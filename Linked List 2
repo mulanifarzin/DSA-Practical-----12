@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+typedef struct node
+{
+    int data;
+    struct node *next;
+}node;
+
+
+
+node *createnode()
+{
+    int n,i;
+    node *p,*head,*t;
+    head=NULL;
+    printf("enter the no of students");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        p=(node*)malloc(sizeof(node));
+        printf("enter the students");
+        scanf("%d",&(p->data));
+        p->next=NULL;
+        if(head==NULL)
+            head=p;
+        else
+        {
+            t=head;
+            while(t->next!=NULL)
+                t=t->next;
+            t->next=p;
+        }
+    }
+    return head;
+}
+
+
+void print(node *head)
+{
+    node *p;
+    int cnt=0;
+    p=head;
+    while(p!=NULL)
+    {
+        printf("\t %d",p->data);
+        p=p->next;
+
+
+    }cnt++;
+    printf("total no of students=%d",cnt);
+
+}
+
+
+int uni(node *head,node *head1)
+{
+    node *p,*q;
+    int found=0,count=0;
+    p=head;
+    while(p!=NULL)
+    {
+        printf("\t %d",p->data);
+        p=p->next;
+    };
+
+
+    for(q=head1;q!=NULL;q=q->next)
+    {
+        found=0;
+        for(p=head;p!=NULL;p=p->next)
+        {
+            if(q->data==p->data)
+            {
+                found=1;
+                break;
+            }
+        }
+
+        if(found!=1)
+        {
+            printf("\t %d",q->data);
+        }
+        count++;
+    }
+    return count;
+}
